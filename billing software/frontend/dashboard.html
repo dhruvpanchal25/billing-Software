@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MediManage – Dashboard</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/dash.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">⬛ MediManage</div>
+    <div class="menu">
+      <a class="active" href="dashboard.html"><i class="bx bx-grid-alt"></i>Dashboard</a>
+      <a href="billing.html"><i class="bx bx-receipt"></i>Billing</a>
+      <a href="inventory.html"><i class="bx bx-box"></i>Inventory</a>
+      <a href="alert.html"><i class="bx bx-bell"></i>Alerts</a>
+      <a href="darft.html"><i class="bx bx-refresh"></i>Auto‑Order System</a>
+      <a href="sam.html"><i class="bx bx-store"></i> Distributor Stock</a>
+      <a><i class="bx bx-cog"></i>Settings</a> 
+    </div>
+    <!-- ChatGPT Style Profile -->
+    <div class="sidebar-profile" onclick="toggleMenu()">
+      <div class="profile-left">
+        <div class="profile-avatar">DP</div>
+        <div class="profile-text">
+          <strong>Dhruv</strong>
+          <span>Free</span>
+        </div>
+      </div>
+      <i class="bx bx-chevron-up"></i>
+      <!-- DROPDOWN MENU -->
+      <div class="profile-dropdown" id="profileMenu">
+        <div class="drop-item">Upgrade plan</div>
+        <div class="drop-item">Personalization</div>
+        <div class="drop-item">Settings</div>
+        <div class="drop-item">Help</div>
+        <div class="drop-item logout" onclick="logout()">Log out</div>
+      </div>
+    </div>
+  </div>
+    <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <h3>MediManage</h3>
+      <input class="search" placeholder="Search..." />
+      <div class="user"><div class="avatar">A</div></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <h2>Dashboard</h2>
+
+      <div class="grid">
+        <div class="card sales">
+          <small>Today's Sales (+₹1200 from yesterday)</small>
+          <h1><span class="count" data-target="2500">0</span></h1>
+          <div class="chart"><canvas id="salesChart" height="180"></canvas></div>
+        </div>
+
+        <div class="card stock">
+          <h3>Total Stock</h3>
+          <h1><span class="count" data-target="1250">0</span> items</h1>
+          <small>+50 items added this week</small>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:#1976d2;margin-bottom:10px">Low‑Stock Alerts</h3>
+          <div class="list-item"><span>Amoxicillin 500mg</span><span class="badge low">Low</span></div>
+          <div class="list-item"><span>Ibuprofen 200mg</span><span class="badge low">Low</span></div>
+          <div class="list-item"><span>Vitamin C 1000mg</span><span class="badge critical">Critical</span></div>
+        </div>
+
+        <div class="card">
+          <h3 style="color:#1976d2;margin-bottom:10px">Soon‑to‑Expire Items</h3>
+          <div class="list-item"><span>Insulin Pen</span><span class="badge days">30 days</span></div>
+          <div class="list-item"><span>Flu Vaccine</span><span class="badge days">60 days</span></div>
+          <div class="list-item"><span>Cough Syrup</span><span class="badge days">7 days</span></div>
+        </div>
+      </div>
+
+      <div class="card actions">
+        <div class="btn" onclick="goToPage('billing.html')">Create Bill</div>
+        <div class="btn" onclick="goToPage('inventory.html')">Add Stock</div>
+        <div class="btn" onclick="goToPage('sam.html')">Order Products</div>
+      </div>
+
+      <div class="card activity">
+        <h3 style="color:#1976d2;margin-bottom:10px"><div class="card activity">
+        <h3><div class="card">
+        <h3 class="section-title">Recent Activity</h3>
+        <div class="activity-item">
+          <span class="icon">📦</span>
+          <div class="text">
+            <p>New stock of Paracetamol 500mg added.</p>
+            <small>2 hours ago</small>
+          </div>
+        </div>
+      <div class="activity-item">
+      <span class="icon">🧾</span>
+      <div class="text">
+        <p>Bill #1005 created for customer John Doe.</p>
+        <small>5 hours ago</small>
+      </div>
+    </div>
+    <div class="activity-item">
+      <span class="icon">🛒</span>
+      <div class="text">
+        <p>Order #2001 placed with PharmaDistributors.</p>
+        <small>1 day ago</small>
+      </div>
+    </div>
+    <div class="activity-item">
+      <span class="icon">⚠️</span>
+      <div class="text">
+        <p>Low stock alert for Ibuprofen 200mg.</p>
+        <small>2 days ago</small>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('salesChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+        datasets: [{
+          label: 'Sales',
+          data: [1200, 1500, 1300, 1800, 2200, 1900, 2500],
+          borderColor: '#ef5350',
+          backgroundColor: 'rgba(239,83,80,0.1)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { grid: { borderDash: [5,5] } }
+        }
+      }
+    });
+  </script>
+  <script>
+      // count-up animation
+      const counters=document.querySelectorAll('.count');
+      counters.forEach(counter=>{
+      const update=()=>{
+      const target=+counter.dataset.target;
+      const current=+counter.innerText;
+      const inc=Math.ceil(target/60);
+        if(current<target){
+          counter.innerText=current+inc;
+          setTimeout(update,30);
+        }else{
+          counter.innerText=target;
+        }
+    }
+      update();
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+
+    /* 🔐 PROTECT DASHBOARD */
+    if(localStorage.getItem("isLoggedIn") !== "true"){
+        window.location.href = "index.html";
+        return;
+    }
+
+    /* 👤 PROFILE DROPDOWN */
+    window.toggleMenu = function(){
+        const menu = document.getElementById("profileMenu");
+        if(menu){
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    };
+
+    document.addEventListener("click", function(e){
+        const profile = document.querySelector(".sidebar-profile");
+        const menu = document.getElementById("profileMenu");
+        if(profile && menu && !profile.contains(e.target)){
+            menu.style.display = "none";
+        }
+    });
+
+    /* 🚪 LOGOUT */
+    window.logout = function(){
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "index.html";
+    };
+    });
+
+    function goToPage(page){
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

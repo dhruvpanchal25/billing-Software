@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MediManage – Billing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bill.css">
+</head>
+<body>
+  <div class="app">
+    <div class="sidebar">
+      <div class="logo"> MediManage</div>
+      <a href="dashboard.html"><i class="bx bx-grid-alt"></i> Dashboard</a>
+      <a class="active" href="billing.html"><i class="bx bx-receipt"></i> Billing</a>
+      <a href="inventory.html"><i class="bx bx-box"></i> Inventory</a>
+      <a href="alert.html"><i class="bx bx-bell"></i> Alerts</a>
+      <a href="darft.html"><i class="bx bx-refresh"></i> Auto-Order</a>
+      <a href="sam.html"><i class="bx bx-store"></i> Distributor Stock</a>
+      <a href="#"><i class="bx bx-cog"></i> Settings</a>
+      <!-- ChatGPT Style Profile -->
+      <div class="sidebar-profile">
+        <div class="profile-left">
+          <div class="profile-avatar">DP</div>
+          <div class="profile-text">
+            <strong>Dhruv</strong>
+            <span>Free</span>
+          </div>
+        </div>
+        <button class="profile-btn">Profile</button>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="inventory-header">
+        <div class="header-content">
+          <h2>Billing</h2>
+          <input class="search" placeholder="Search product..." />
+        </div>
+      </div>
+
+      <div class="billing-grid">
+
+        <!-- Left -->
+        <div class="card">
+          <h3>Customer Details</h3>
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input placeholder="Enter mobile">
+          </div>
+
+          <h3 style="margin-top:20px">Add Item</h3>
+          <div class="add-item">
+            <input id="productSearch" placeholder="Search product...">
+            <input id="qtyInput" type="number" min="1" value="1">
+            <button class="add-btn" onclick="addItem()">Add</button>
+            <div id="suggestions" class="suggestions"></div>
+          </div>
+
+          <h3>Bill Items</h3>
+          <table id="billTable">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- Right -->
+        <div class="card">
+          <h3>Summary</h3>
+          <div class="summary">
+            <p><span>Subtotal</span><span id="subTotal">₹0</span></p>
+            <p><span>GST (5%)</span><span id="gst">₹0</span></p>
+            <p class="total"><span>Total</span><span id="grandTotal">₹0</span></p>
+          </div>
+          <button class="pay-btn">Generate Bill</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/bill.js"></script>
+</body>
+</html>

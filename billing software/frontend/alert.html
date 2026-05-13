@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediManage – Alerts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+  <div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">⬛ MediManage</div>
+    <div class="menu">
+      <a href="dashboard.html"><i class="bx bx-grid-alt"></i>Dashboard</a>
+      <a href="billing.html"><i class="bx bx-receipt"></i>Billing</a>
+      <a href="inventory.html"><i class="bx bx-box"></i>Inventory</a>
+      <a class="active" href="alert.html"><i class="bx bx-bell"></i>Alerts</a>
+      <a href="darft.html"><i class="bx bx-refresh"></i>Auto‑Order System</a>
+      <a href="sam.html"><i class="bx bx-store"></i> Distributor Stock</a>
+      <a><i class="bx bx-cog"></i>Settings</a>
+    </div>
+    <!-- ChatGPT Style Profile -->
+    <div class="sidebar-profile">
+        <div class="profile-left">
+            <div class="profile-avatar">DP</div>
+            <div class="profile-text">
+                <strong>Dhruv</strong>
+                <span>Free</span>
+            </div>
+        </div>
+        <button class="profile-btn">Profile</button>
+    </div>
+  </div>
+
+    <!-- Main -->
+    <div class="main">
+      
+      <div class="topbar">
+        <h1>Alerts</h1>
+        <input class="search" placeholder="Search...">
+      </div>
+
+      <div class="tabs">
+        <div class="slider"></div>   
+        <div class="active">Low Stock</div>
+        <div>Expiring Soon</div>
+        <div>Out of Stock</div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Paracetamol 500mg Tablets</h3>
+          <span class="badge red">Critical – Low Stock</span>
+          <div class="info">Current Stock: <b>15 units</b></div>
+          <div class="info">Threshold: <b>20 units</b></div>
+          <div class="actions">
+            <button class="order">Order</button>
+            <button class="view">View Supplier</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Amoxicillin 250mg Capsules</h3>
+          <span class="badge orange">High Priority – Low Stock</span>
+          <div class="info">Current Stock: <b>25 units</b></div>
+          <div class="info">Threshold: <b>30 units</b></div>
+          <div class="actions">
+            <button class="order">Order</button>
+            <button class="view">View Supplier</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Vitamin C 1000mg Effervescent</h3>
+          <span class="badge blue">Medium Priority – Low Stock</span>
+          <div class="info">Current Stock: <b>40 units</b></div>
+          <div class="info">Threshold: <b>50 units</b></div>
+          <div class="actions">
+            <button class="order">Order</button>
+            <button class="view">View Supplier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tabs = document.querySelectorAll(".tabs div:not(.slider)");
+    const slider = document.querySelector(".tabs .slider");
+    function moveSlider(tab){
+      slider.style.width = tab.offsetWidth + "px";
+      slider.style.left = tab.offsetLeft + "px";
+    }
+    tabs.forEach(tab=>{
+      tab.addEventListener("click",()=>{
+        tabs.forEach(t=>t.classList.remove("active"));
+        tab.classList.add("active");
+        moveSlider(tab);
+      });
+    });
+    // Initialize slider on page load
+    moveSlider(document.querySelector(".tabs .active"));
+  </script>
+</body>
+</html>

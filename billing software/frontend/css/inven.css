@@ -1,0 +1,292 @@
+:root{
+--blue:#0d6efd;
+--bg:#f8fafc;
+--border:#e5e7eb;
+--text:#1f2937;
+--muted:#6b7280;
+--danger:#ef4444;
+--success:#16a34a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, sans-serif;}
+body{
+  background: var(--bg);
+  min-height:100vh;
+  background-color: #dadada54;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:240px;              /* 🔥 REQUIRED */
+  height:100vh;
+  background:#fff;
+  padding:20px;             /* 🔥 REQUIRED */
+  border-right:1px solid var(--border);
+  box-sizing:border-box;
+}
+
+.sidebar .logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:20px;
+font-weight:600;
+color:var(--blue);
+margin-bottom:30px;
+}
+
+.sidebar a{
+display:flex;
+gap:12px;
+align-items:center;
+padding:10px;
+border-radius:8px;
+color:#374151;
+text-decoration:none;
+font-size:14px;
+}
+
+.sidebar a.active,
+.sidebar a:hover{
+  background:#e3f2fd;
+  color:#1976d2;
+}
+
+/* ChatGPT Style Profile */
+.sidebar-profile{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  width:calc(100% - 40px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 12px;
+  background:#f6f7f8;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.sidebar-profile:hover{
+  background:#e9f2ff;
+}
+
+.profile-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile-avatar{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#c104f5;
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profile-text strong{
+  display:block;
+  font-size:14px;
+  color:#111;
+}
+.profile-text span{
+  font-size:12px;
+  color:#777;
+}
+
+.profile-btn{
+  background:#fff;
+  border:1px solid #ddd;
+  padding:6px 12px;
+  font-size:12px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.25s;
+}
+.profile-btn:hover{
+  background:#1976d2;
+  color:#fff;
+  border-color:#1976d2;
+}
+
+.sidebar a.active,
+.sidebar a:hover{
+  background:#e3f2fd;
+  color:#1976d2
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  width:84%
+}
+
+/* HEADER */
+.header{
+background:#fff;border-bottom:1px solid var(--border);
+padding:15px 30px;
+display:flex;justify-content:space-between;align-items:center;
+}
+.header .right{
+display:flex;align-items:center;gap:20px;
+}
+.header input{
+padding:8px 14px;border-radius:8px;border:1px solid var(--border);
+}
+
+/* CONTENT */
+.content {
+  padding: 30px;
+  margin-left: 240px;
+}
+
+/* TITLE */
+.title h1{font-size:26px;margin-bottom:10px}
+
+/* CONTROLS */
+.controls{
+margin-top:20px;
+display:flex;gap:12px;flex-wrap:wrap;
+}
+.controls input,.controls select{
+padding:10px 14px;border:1px solid var(--border);
+border-radius:8px;
+}
+.controls button{
+padding:10px 16px;border-radius:8px;
+border:none;font-weight:600;cursor:pointer;
+display:flex;gap:6px;align-items:center;
+}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-outline{background:#fff;border:1px solid var(--border)}
+
+/* TABLE */
+.table-wrap{
+margin-top:25px;background:#fff;
+border:1px solid var(--border);
+border-radius:12px;overflow:hidden;
+}
+table{width:100%;border-collapse:collapse}
+th,td{padding:14px 18px;text-align:left}
+th{background:#f9fafb;color:#6b7280;font-size:13px}
+tr:not(:last-child){border-bottom:1px solid var(--border)}
+
+.status{
+padding:4px 12px;border-radius:999px;font-size:12px;
+}
+.in{background:#e7f9ef;color:var(--success)}
+.low{background:#fee2e2;color:var(--danger)}
+
+.expiry{color:var(--danger);font-weight:600}
+
+/* PAGINATION */
+.pagination{
+margin-top:15px;
+display:flex;
+justify-content:space-between;
+color: rgb(0, 0, 0);
+font-size:14px;
+}
+
+.edit-input {
+  padding:6px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  width:100%;
+}
+
+.save-btn {
+  background:#16a34a;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  margin-right:6px;
+  cursor:pointer;
+}
+
+.cancel-btn {
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.manage-btn {
+  background:#f59e0b;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.add-btn {
+  background:#1976d2;
+  color:white;
+  border:none;
+  padding:6px 10px;
+  border-radius:6px;
+  margin-right:6px;
+  cursor:pointer;
+}
+
+.delete-icon {
+  color:#ef4444;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* =====================
+new inpt method
+====================== */
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: none; /* important */
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999; /* 🔥 very important */
+}
+
+.modal-box{
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+
+  width: 90%;
+  max-width: 600px;  /* 🔥 prevent breaking layout */
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  animation: popup 0.25s ease;
+}
+
+@keyframes popup{
+  from{
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}

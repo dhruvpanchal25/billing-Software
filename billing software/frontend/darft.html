@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MediManage – Auto Order</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#f4f6f8}
+.app{display:flex;min-height:100vh}
+
+/* ===== SIDEBAR (same as Inventory) ===== */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:240px;              /* 🔥 REQUIRED */
+  height:100vh;
+  background:#fff;
+  padding:20px;             /* 🔥 REQUIRED */
+  border-right:1px solid var(--border);
+  box-sizing:border-box;
+}
+.logo{
+  font-size:20px;
+  font-weight:600;
+  color:#1976d2;
+  margin-bottom:25px;
+}
+.menu a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  margin-bottom:6px;
+  text-decoration:none;
+  color:#555;
+  border-radius:8px;
+  font-size:14px;
+}
+.menu a:hover,
+.menu a.active{
+  background:#e3f2fd;
+  color:#1976d2;
+}
+
+/* ChatGPT Style Profile */
+.sidebar-profile{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  width:calc(100% - 40px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 12px;
+  background:#f6f7f8;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.sidebar-profile:hover{
+  background:#e9f2ff;
+}
+
+.profile-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile-avatar{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#f5a104;
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.profile-text strong{
+  display:block;
+  font-size:14px;
+  color:#111;
+}
+.profile-text span{
+  font-size:12px;
+  color:#777;
+}
+
+.profile-btn{
+  background:#fff;
+  border:1px solid #ddd;
+  padding:6px 12px;
+  font-size:12px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.25s;
+}
+.profile-btn:hover{
+  background:#1976d2;
+  color:#fff;
+  border-color:#1976d2;
+}
+
+.sidebar a.active,
+.sidebar a:hover{
+  background:#e3f2fd;
+  color:#1976d2
+}
+
+
+/* ===== MAIN ===== */
+.main{margin-left:240px;width:100%}
+
+/* ===== HEADER (same as Inventory) ===== */
+.header{
+  height:64px;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+.header h2{font-size:18px}
+.header input{
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid #ddd;
+  width:220px;
+}
+
+/* ===== CONTENT ===== */
+.content{padding:25px}
+.page-title{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:20px;
+}
+
+/* Card */
+.card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  padding:20px;
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+th,td{
+  padding:12px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+th{background:#f9fafb;color:#555}
+
+.badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+}
+.active{background:#e8f5e9;color:#2e7d32}
+.paused{background:#fff3e0;color:#ef6c00}
+
+.actions button{
+  padding:6px 10px;
+  border-radius:6px;
+  border:none;
+  font-size:12px;
+  cursor:pointer;
+}
+.edit{background:#e3f2fd;color:#1976d2}
+.pause{background:#fff3e0;color:#ef6c00}
+
+/* ===== Quantity Control ===== */
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.qty-control input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px;
+  font-size: 14px;
+}
+
+.qty-control button {
+  border: none;
+  background: #e3f2fd;
+  color: #1976d2;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.qty-control button:hover {
+  background: #1976d2;
+  color: #fff;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">MediManage</div>
+
+    <div class="menu">
+      <a href="dashboard.html"><i class='bx bx-grid-alt'></i>Dashboard</a>
+      <a href="billing.html"><i class='bx bx-receipt'></i>Billing</a>
+      <a href="inventory.html"><i class='bx bx-box'></i>Inventory</a>
+      <a href="alert.html"><i class='bx bx-bell'></i>Alerts</a>
+      <a href="darft.html" class="active"><i class='bx bx-refresh'></i>Auto-Order</a>
+      <a href="sam.html"><i class="bx bx-store"></i>Distributor Stock</a>
+      <a><i class='bx bx-cog'></i>Settings</a>
+    </div>
+    <!-- ChatGPT Style Profile -->
+    <div class="sidebar-profile">
+        <div class="profile-left">
+            <div class="profile-avatar">DP</div>
+            <div class="profile-text">
+                <strong>Dhruv</strong>
+                <span>Free</span>
+            </div>
+        </div>
+        <button class="profile-btn">Profile</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h2>Auto-Order</h2>
+      <input placeholder="Search...">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="page-title">Auto-Order Management</div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicine</th>
+              <th>Stock</th>
+              <th>Threshold</th>
+              <th>Order Qty</th>
+              <th>Distributor</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Paracetamol 500mg</td>
+              <td>15</td>
+              <td>20</td>
+              <td>
+                <div class="qty-control">
+                  <button class="minus">-</button>
+                  <input type="number" value="50" min="0">
+                  <button class="plus">+</button>
+                </div>
+              </td>
+              <td>PharmaCore</td>
+              <td><span class="badge active">Active</span></td>
+              <td class="actions">
+                <button class="edit">Edit</button>
+                <button class="pause">Pause</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Amoxicillin 250mg</td>
+              <td>25</td>
+              <td>30</td>
+              <td>
+                <div class="qty-control">
+                  <button class="minus">-</button>
+                  <input type="number" value="40" min="0">
+                  <button class="plus">+</button>
+                </div>
+              </td>
+              <td>BioLife</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td class="actions">
+                <button class="edit">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.qty-control').forEach(control => {
+  const input = control.querySelector('input');
+  const minus = control.querySelector('.minus');
+  const plus = control.querySelector('.plus');
+
+  minus.addEventListener('click', () => {
+    let value = parseInt(input.value);
+    if(value > parseInt(input.min)) input.value = value - 1;
+  });
+
+  plus.addEventListener('click', () => {
+    let value = parseInt(input.value);
+    input.value = value + 1;
+  });
+});
+</script>
+
+</body>
+</html>

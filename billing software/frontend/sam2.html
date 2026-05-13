@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeoVision Tech – Home (Hero)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+    header{
+      height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 48px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      background:rgba(0,0,0,0.85);
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#4f8cff;
+      letter-spacing:.2px;
+    }
+    nav a{
+      margin-left:28px;
+      color:#d1d5db;
+      font-size:14px;
+      text-decoration:none;
+    }
+    nav a:hover{color:#fff}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      height:calc(100vh - 68px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
+
+    /* BACKGROUND GLOW */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(600px 600px at 50% 45%, rgba(37,99,235,0.22), transparent 65%);
+      z-index:0;
+    }
+
+    /* LION IMAGE */
+    .lion{
+      position:absolute;
+      width:520px;
+      max-width:90vw;
+      opacity:0.95;
+      filter:drop-shadow(0 0 35px rgba(59,130,246,0.9)) drop-shadow(0 0 80px rgba(34,211,238,0.4));
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:920px;
+      padding:0 20px;
+    }
+
+    h1{
+      font-size:56px;
+      font-weight:800;
+      line-height:1.15;
+      letter-spacing:-0.5px;
+    }
+
+    p{
+      margin:22px auto 34px;
+      max-width:760px;
+      color:#b9c0cc;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .cta{
+      display:inline-block;
+      padding:14px 34px;
+      border:none;
+      border-radius:10px;
+      background:#2563eb;
+      color:#fff;
+      font-size:15px;
+      cursor:pointer;
+      box-shadow:0 0 25px rgba(37,99,235,.65);
+    }
+    .cta:hover{background:#1e40af}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      h1{font-size:44px}
+      .lion{width:420px}
+    }
+    @media(max-width:520px){
+      h1{font-size:34px}
+      p{font-size:15px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🦁 LeoVision Tech</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Technologies</a>
+    <a href="#">Testimonials</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <!-- IMPORTANT: place the lion image file in the same folder and name it lion.png -->
+  <img src="lion.png" alt="Digital Circuit Lion" class="lion" />
+
+  <div class="hero-content">
+    <h1>Innovating the Future of Digital<br>Excellence</h1>
+    <p>
+      At LeoVision Tech, we transform visionary ideas into cutting-edge digital realities.
+      Partner with us to build tomorrow’s technology, today.
+    </p>
+    <button class="cta">Explore Our Solutions</button>
+  </div>
+</section>
+
+</body>
+</html>

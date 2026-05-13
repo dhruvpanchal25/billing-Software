@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MediManage – Distributor Stock</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+/* ===== ROOT ===== */
+:root{
+  --blue:#1976d2;
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --text:#2f3640;
+  --muted:#718093;
+  --border:#e1e4ea;
+}
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ===== LAYOUT ===== */
+.container{
+  display:flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:240px;
+  background:#fff;
+  height:100vh;
+  border-right:1px solid var(--border);
+  padding:20px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--blue);
+  margin-bottom:30px;
+}
+
+.menu a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  text-decoration:none;
+  color:#555;
+  border-radius:8px;
+  margin-bottom:5px;
+}
+
+.menu a.active,
+.menu a:hover{
+  background:#eaf1ff;
+  color:var(--blue);
+}
+
+.profile{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#7b2cff;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+}
+
+/* ===== MAIN ===== */
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== HEADER ===== */
+.header{
+  background:#fff;
+  padding:15px 25px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.header input{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  width:220px;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:30px;
+}
+
+.content h2{
+  font-size:26px;
+  margin-bottom:20px;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-bar{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.search-bar input{
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+}
+
+.search-bar button{
+  padding:12px 18px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#fff;
+  cursor:pointer;
+}
+
+/* ===== CARD ===== */
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* ===== TABLE ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  text-align:left;
+  font-size:14px;
+  color:var(--muted);
+  padding-bottom:10px;
+}
+
+td{
+  padding:14px 0;
+  border-top:1px solid var(--border);
+  font-size:15px;
+}
+
+.badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:13px;
+}
+
+.in{
+  background:#e6f7ee;
+  color:#1e8449;
+}
+
+.out{
+  background:#ffe5e5;
+  color:#c0392b;
+}
+
+.low{
+  background:#fff2cc;
+  color:#b7950b;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  padding:6px 14px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.order{
+  background:var(--blue);
+  color:#fff;
+}
+
+.alt{
+  background:#fff;
+  border:1px solid var(--border);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">MediManage</div>
+
+    <div class="menu">
+      <a href="dashboard.html"><i class='bx bx-grid-alt'></i>Dashboard</a>
+      <a href="billing.html"><i class='bx bx-receipt'></i>Billing</a>
+      <a href="inventory.html"><i class='bx bx-box'></i>Inventory</a>
+      <a href="alert.html"><i class='bx bx-bell'></i>Alerts</a>
+      <a href="darft.html"><i class='bx bx-refresh'></i>Auto-Order</a>
+      <a href="sam.html" class="active"><i class='bx bx-store'></i>Distributor Stock</a>
+      <a href="#"><i class='bx bx-cog'></i>Settings</a>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">DP</div>
+      <div>
+        <div><b>Dhruv</b></div>
+        <small>Free</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h3>Distributor Stock Check</h3>
+      <input type="text" placeholder="Search...">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <h2>Distributor Stock Check</h2>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search medicine by name...">
+        <button>Clear</button>
+        <button><i class='bx bx-filter'></i> Filters</button>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicine</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Delivery</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Paracetamol 500mg</td>
+              <td>120 <span class="badge in">In Stock</span></td>
+              <td>₹5.20</td>
+              <td>2–3 days</td>
+              <td><button class="btn order">Order</button></td>
+            </tr>
+
+            <tr>
+              <td>Amoxicillin 250mg</td>
+              <td><span class="badge out">Out of Stock</span></td>
+              <td>-</td>
+              <td>-</td>
+              <td><button class="btn alt">View Alternate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        <span>Showing 2 items</span>
+        <span>Page 1</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
